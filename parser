@@ -1,0 +1,221 @@
+xml file
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6BDACF"
+    android:backgroundTint="#7CDDD4"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="615dp"
+        android:background="#AE5B5B"
+        android:backgroundTint="#57C65B"
+        android:text="Parser Application"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="219dp"
+        android:layout_marginEnd="266dp"
+        android:layout_marginBottom="464dp"
+        android:backgroundTint="#AC1347"
+        android:onClick="parseXml"
+        android:text="XML" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="254dp"
+        android:layout_marginTop="218dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="465dp"
+        android:backgroundTint="#A81245"
+        android:onClick="parseJson"
+        android:text="JSON" />
+
+    <TextView
+        android:id="@+id/display"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="398dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="87dp"
+        android:text=""
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/display2"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="402dp"
+        android:layout_marginEnd="214dp"
+        android:layout_marginBottom="94dp"
+        android:text=""
+        android:textSize="18sp" />
+
+</RelativeLayout>
+
+java file
+
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+public class MainActivity extends AppCompatActivity
+{ TextView display1;
+    TextView display2;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        display1=findViewById(R.id.display2);
+        display2=findViewById(R.id.display);
+    }
+    public void parseXml(View V)
+    {
+        try {InputStream is=getAssets().open("city.xml");
+            DocumentBuilderFactory documentBuilderFactory=DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document=documentBuilder.parse(is);
+            StringBuilder stringBuilder=new StringBuilder();
+            stringBuilder.append("XML DATA");
+            stringBuilder.append("\n-------");
+            NodeList nodeList=document.getElementsByTagName("place");
+            for (int i=0;i<nodeList.getLength();i++)
+            {
+                Node node=nodeList.item(i);
+                if(node.getNodeType()==Node.ELEMENT_NODE) {
+                    Element element=(Element)node;
+                    stringBuilder.append("\n Name").append(getValue("name",element));
+                    stringBuilder.append("\n Latitude").append(getValue("latitude",element));
+                    stringBuilder.append("\n Longitude").append(getValue("longitude",element));
+                    stringBuilder.append("\n Temperature").append(getValue("temperature",element));
+                    stringBuilder.append("\n Humidity").append(getValue("humidity",element));
+                    stringBuilder.append("\n------");
+                }
+            }
+            display1.setText(stringBuilder.toString()); }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            Toast.makeText(MainActivity.this,"Error in reading xml file",Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void parseJson(View V)
+    { String json;
+        StringBuilder stringBuilder=new StringBuilder(); try
+    {
+        InputStream is=getAssets().open("city.json"); int size=is.available();
+        byte[] buffer=new byte[size];
+        is.read(buffer);
+        json=new String(buffer, StandardCharsets.UTF_8);
+        JSONArray jsonArray=new JSONArray(json); stringBuilder.append("JSON DATA");
+        stringBuilder.append("\n-----");
+        for (int i=0;i<jsonArray.length();i++)
+        {
+            JSONObject jsonObject=jsonArray.getJSONObject(i);
+            stringBuilder.append("\n Name").append(jsonObject.getString("Name"));
+            stringBuilder.append("\n Latitude").append(jsonObject.getString("Latitude"));
+            stringBuilder.append("\n Longitude").append(jsonObject.getString("Longitude"));
+            stringBuilder.append("\n Temperature").append(jsonObject.getString("Temperature"));
+            stringBuilder.append("\n Humidity").append(jsonObject.getString("Humidity"));
+            stringBuilder.append("\n-----");
+        }
+        display2.setText(stringBuilder.toString());
+        is.close();
+    }
+    catch (Exception e)
+    {
+        e.printStackTrace();
+        Toast.makeText(MainActivity.this,"Error in reading json file",Toast.LENGTH_SHORT).show();
+    }
+    }
+    private String getValue(String tag,Element element) {
+        return
+                element.getElementsByTagName(tag).item(0).getChildNodes().item(0). getNodeValue();
+    }
+}
+
+city.json
+
+[
+
+  {
+    "Name": "Mysore",
+    "Latitude": "12.293",
+    "Longitude": "76.639",
+    "Temperature": "22",
+    "Humidity": "98%"
+  }
+
+]
+
+city.xml
+
+<?xml version="1.6" ?>
+<record>
+    <place>
+        <name>
+            Bangalore
+        </name>
+        <latitude> 10.97 </latitude>
+        <longitude> 72.12 </longitude>
+        <temperature> 3.5 </temperature>
+        <humidity> 95% </humidity>
+    </place>
+</record>

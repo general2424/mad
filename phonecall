@@ -8,6 +8,31 @@ xm file
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="79dp"
+        android:layout_marginBottom="340dp"
+        android:background="#D0173F49"
+        android:onClick="inputNumber"
+        android:text="9" />
+
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="192dp"
+        android:layout_marginBottom="406dp"
+        android:background="#D0173F49"
+        android:onClick="inputNumber"
+        android:text="5" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,41 +65,37 @@ xm file
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="68dp"
         android:layout_marginBottom="546dp"
-        android:text="Clear" /><Button
-    android:id="@+id/btn1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentBottom="true"
-    android:layout_marginEnd="301dp"
-    android:layout_marginBottom="471dp"
-    android:onClick="inputNumber"
-    android:background="#D0173F49"
-    android:text="1" />
+        android:text="Clear" />
+
     <Button
         android:id="@+id/btn2"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="193dp"
         android:layout_marginBottom="472dp"
-        android:onClick="inputNumber"
         android:background="#D0173F49"
+        android:onClick="inputNumber"
         android:text="2" />
+
     <Button
         android:id="@+id/btn3"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:onClick="inputNumber"
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="471dp"
         android:background="#D0173F49"
+        android:onClick="inputNumber"
         android:text="3" />
+
     <Button
         android:id="@+id/btn4"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -83,17 +104,8 @@ xm file
         android:layout_marginBottom="403dp"
         android:background="#D0173F49"
         android:onClick="inputNumber"
-        android:text="4" /><Button
-    android:id="@+id/btn5"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentBottom="true"
-    android:layout_marginEnd="193dp"
-    android:layout_marginBottom="402dp"
+        android:text="4" />
 
-    android:onClick="inputNumber"
-    android:text="5" />
     <Button
         android:id="@+id/btn6"
         android:layout_width="wrap_content"
@@ -116,27 +128,31 @@ xm file
         android:background="#D0173F49"
         android:onClick="inputNumber"
         android:text="7" />
+
     <Button
-        android:id="@+id/btn8"
+        android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="193dp"
-        android:layout_marginBottom="338dp"
+        android:layout_marginEnd="306dp"
+        android:layout_marginBottom="471dp"
+        android:background="#D0173F49"
         android:onClick="inputNumber"
-        android:text="8" />
+        android:text="1" />
+
     <Button
         android:id="@+id/btn9"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentBottom="true"
-    android:layout_marginEnd="69dp"
-    android:layout_marginBottom="336dp"
-    android:background="#D0173F49"
-    android:onClick="inputNumber"
-    android:text="9" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="195dp"
+        android:layout_marginBottom="340dp"
+        android:background="#D0173F49"
+        android:onClick="inputNumber"
+        android:text="8" />
+
     <Button
         android:id="@+id/btn10"
         android:layout_width="wrap_content"
@@ -172,13 +188,13 @@ xm file
         android:text="#" />
     <Button
         android:id="@+id/callBtn"
-    android:layout_width="127dp"
-    android:layout_height="63dp"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentBottom="true"
-    android:layout_marginEnd="232dp"
-    android:layout_marginBottom="194dp"
-    android:text="Call" />
+        android:layout_width="127dp"
+        android:layout_height="63dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="232dp"
+        android:layout_marginBottom="194dp"
+        android:text="Call" />
     <Button
         android:id="@+id/saveBtn"
         android:layout_width="107dp"
@@ -189,6 +205,7 @@ xm file
         android:layout_marginBottom="193dp"
         android:text="Save" />
 </RelativeLayout>
+
 
 java pgm
 
